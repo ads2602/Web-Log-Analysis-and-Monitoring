@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'kafka_producer'
+    static_configs:
+      - targets: ['script-runner:8000', 'script-runner:8004', 'script-runner:8005']
+
+  - job_name: 'kafka_consumer'
+    static_configs:
+      - targets: ['script-runner:8001', 'script-runner:8002', 'script-runner:8003']
