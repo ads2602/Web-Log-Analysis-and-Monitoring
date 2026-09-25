@@ -243,10 +243,7 @@ Latency is measured as the difference between the consumer's wall clock at proce
 
 These are deliberate trade-offs for a single-machine coursework deployment, not oversights.
 
-- **Elasticsearch runs single-node** while the index requests `number_of_replicas: 1`. A single node cannot allocate replica shards, so index health stays yellow. Production would use a multi-node cluster, or set replicas to `0` for local runs.
 - **The producer throttles at 0.1 s per message** to simulate a live stream. Throughput figures therefore reflect the throttle, not Kafka's capacity, and only a subset of the 3.3 GB corpus is streamed in a typical run.
-- **Indexing is one document per request.** Elasticsearch's Bulk API would batch several hundred documents per call and would be the first change for production throughput.
-- **Consumer group lag is not exported as a metric.** The consumer logs group membership and state, but computing true lag requires comparing committed offsets against partition end offsets.
 - **Grafana dashboards are created manually** rather than provisioned as code, so they do not persist with the repository.
 
 ---
